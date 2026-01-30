@@ -1,62 +1,110 @@
-import { Star, Quote } from "lucide-react";
-import ciroImage from "@/assets/ciro-hero.jpg";
+import { Star, Quote, Award, Users, Building } from "lucide-react";
 import remaxLogo from "@/assets/remax-logo.png";
 
 const AuthoritySection = () => {
   return (
     <section className="section-padding bg-gradient-to-b from-background to-card">
       <div className="container mx-auto">
-        <div className="container-narrow">
-          {/* Agent Card */}
-          <div className="card-premium mb-8 text-center">
-            <div className="relative inline-block mb-4">
-              <img
-                src={ciroImage}
-                alt="Ciro Clemente"
-                className="w-32 h-32 rounded-full object-cover object-top border-4 border-primary shadow-remax"
-              />
-              <div className="absolute -bottom-2 -right-2 bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                6 AÑOS
+        <div className="max-w-4xl mx-auto">
+          
+          {/* Stats Row */}
+          <div className="grid grid-cols-3 gap-4 mb-12">
+            {[
+              { icon: Award, value: "6+", label: "Años REMAX" },
+              { icon: Building, value: "50+", label: "Propiedades" },
+              { icon: Users, value: "100%", label: "Satisfacción" },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="text-center p-4 lg:p-6 bg-card rounded-xl shadow-soft"
+              >
+                <stat.icon className="h-6 w-6 lg:h-8 lg:w-8 text-primary mx-auto mb-2" />
+                <p className="text-2xl lg:text-3xl font-black text-foreground">{stat.value}</p>
+                <p className="text-xs lg:text-sm text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Agent Profile Card */}
+          <div className="grid lg:grid-cols-2 gap-8 items-center mb-12">
+            {/* Image Placeholder */}
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-elevated bg-muted aspect-square lg:aspect-[4/5]">
+                {/* Placeholder for user's professional photo */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-gradient-to-br from-secondary/80 to-remax-bridge-blue">
+                  <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mb-4">
+                    <span className="text-3xl font-black text-primary-foreground">CC</span>
+                  </div>
+                  <p className="text-primary-foreground font-bold text-lg mb-2">TU FOTO PROFESIONAL</p>
+                  <p className="text-primary-foreground/70 text-sm">
+                    Foto trabajando, en la oficina o con clientes
+                  </p>
+                </div>
+              </div>
+              
+              {/* REMAX Badge */}
+              <div className="absolute -bottom-4 -right-4 bg-card rounded-xl p-3 shadow-elevated">
+                <img src={remaxLogo} alt="REMAX" className="h-14 w-auto" />
               </div>
             </div>
-            
-            <h2 className="text-2xl sm:text-3xl font-black text-foreground mb-2">
-              CIRO CLEMENTE ALBITRES
-            </h2>
-            <p className="text-primary font-bold uppercase mb-4">
-              Agente REMAX Aces
-            </p>
-            
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <img src={remaxLogo} alt="REMAX" className="h-12" />
+
+            {/* Info */}
+            <div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-foreground mb-4">
+                CIRO CLEMENTE ALBITRES
+              </h2>
+              <p className="text-primary font-bold uppercase mb-4 text-lg">
+                Agente REMAX Aces • San Isidro
+              </p>
+              
+              <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
+                Con más de 6 años en REMAX, me especializo en propiedades de alto valor en 
+                <strong className="text-foreground"> Lima Top y Lima Moderna</strong>. 
+                Mi enfoque: vender bien, no solo vender rápido. Tu patrimonio merece estrategia.
+              </p>
+
+              <div className="flex flex-wrap gap-3 mb-6">
+                {["Surco", "San Borja", "Magdalena", "Jesús María", "San Isidro"].map((zone) => (
+                  <span
+                    key={zone}
+                    className="px-3 py-1.5 bg-muted rounded-full text-sm font-medium text-foreground"
+                  >
+                    {zone}
+                  </span>
+                ))}
+              </div>
+
+              <p className="text-sm text-muted-foreground">
+                Parte de la <strong className="text-foreground">red inmobiliaria #1 mundial</strong> en ventas de propiedades
+              </p>
             </div>
-            
-            <p className="text-muted-foreground text-sm">
-              Parte de la red inmobiliaria <strong className="text-foreground">#1 mundial</strong> en ventas de propiedades
-            </p>
           </div>
 
           {/* Testimonial */}
-          <div className="relative bg-secondary/10 rounded-2xl p-6 border-l-4 border-primary">
-            <Quote className="absolute top-4 right-4 h-8 w-8 text-primary/20" />
+          <div className="relative bg-card rounded-2xl p-6 lg:p-8 shadow-elevated border-l-4 border-primary">
+            <Quote className="absolute top-6 right-6 h-10 w-10 text-primary/10" />
             
-            <div className="flex gap-1 mb-3">
+            <div className="flex gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-primary text-primary" />
               ))}
             </div>
             
-            <blockquote className="text-foreground italic mb-4">
-              "Es la segunda vez que trabajo con el Sr. Ciro Clemente y puedo decir que estoy satisfecha con su profesionalismo. Me da confianza para poner en sus manos la búsqueda de un inquilino que cumpla con el perfil que deseo, además de encargarse de todo lo necesario de la gestión. <strong>Lo recomiendo 100%.</strong>"
+            <blockquote className="text-lg lg:text-xl text-foreground mb-6 leading-relaxed">
+              "Es la segunda vez que trabajo con el Sr. Ciro Clemente y puedo decir que estoy 
+              <strong> satisfecha con su profesionalismo</strong>. Me da confianza para poner en sus manos 
+              la búsqueda de un inquilino que cumpla con el perfil que deseo, además de encargarse de 
+              todo lo necesario de la gestión. <strong className="text-primary">Lo recomiendo 100%.</strong>"
             </blockquote>
             
-            <footer className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground font-bold">
+            <footer className="flex items-center gap-4">
+              {/* Placeholder for testimonial photo */}
+              <div className="w-14 h-14 rounded-full bg-gradient-remax flex items-center justify-center text-primary-foreground font-bold text-lg">
                 JP
               </div>
               <div>
-                <p className="font-bold text-foreground">Janet Rocío Palomino Olivares</p>
-                <p className="text-sm text-muted-foreground">Cliente recurrente</p>
+                <p className="font-bold text-foreground text-lg">Janet Rocío Palomino Olivares</p>
+                <p className="text-muted-foreground">Cliente recurrente • Lima</p>
               </div>
             </footer>
           </div>
