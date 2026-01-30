@@ -1,4 +1,6 @@
 import { Heart, Shield, Clock, Camera } from "lucide-react";
+import photoNotaria from "@/assets/notaria.jpg";
+
 
 const AccompanimentSection = () => {
   return (
@@ -6,18 +8,12 @@ const AccompanimentSection = () => {
       <div className="container mx-auto">
         <div className="max-w-4xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Image Placeholder */}
             <div className="relative rounded-2xl overflow-hidden shadow-elevated aspect-video lg:aspect-[4/3]">
-              {/* Placeholder for closing/handshake image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-remax-bridge-blue to-foreground flex flex-col items-center justify-center p-8 text-center">
-                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-4">
-                  <Camera className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <p className="text-primary-foreground font-bold text-lg mb-2">FOTO DE CIERRE</p>
-                <p className="text-primary-foreground/70 text-sm max-w-xs">
-                  Añade foto en notaría, entrega de llaves o con clientes satisfechos
-                </p>
-              </div>
+              <img
+                src={photoNotaria}
+                alt="Firma en notaría"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* Content */}
@@ -26,7 +22,7 @@ const AccompanimentSection = () => {
                 NO ESTÁS SOLO EN ESTO
               </h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Te acompaño desde la primera conversación hasta que tengas las llaves (o el cheque) en la mano. 
+                Te acompaño desde la primera conversación hasta que tengas las llaves (o el cheque) en la mano.
                 Sin sorpresas, sin letras pequeñas.
               </p>
 

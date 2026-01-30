@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import wsp from "@/assets/logos/wstp.svg";
 
 const WhatsAppButton = () => {
   const phoneNumber = "51999999999"; // Replace with actual phone number
@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
       className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl animate-pulse-soft"
       aria-label="Contactar por WhatsApp"
     >
-      <MessageCircle className="h-8 w-8 text-white" fill="white" />
+      <img src={wsp} alt="WhatsApp" className="h-8 w-8" />
     </a>
   );
 };

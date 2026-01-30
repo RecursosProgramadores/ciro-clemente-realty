@@ -8,7 +8,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -21,93 +21,92 @@ const Header = () => {
     { href: "#contacto", label: "Contacto" },
   ];
 
+  const phoneNumber = "+51 971 438 756";
+  const phoneHref = "tel:+51971438756";
+
   return (
     <>
-      {/* Top Bar - Contact Info */}
-      <div className="hidden md:block bg-remax-bridge-blue text-primary-foreground py-2">
-        <div className="container mx-auto px-4 flex items-center justify-between text-sm">
+      {/* Top Bar - Contact Info (Part of sticky flow or hidden on scroll) */}
+      <div className={`hidden md:block bg-remax-bridge-blue text-primary-foreground py-2 transition-all duration-300 ${isScrolled ? "-translate-y-full opacity-0 h-0" : "translate-y-0 opacity-100"}`}>
+        <div className="container mx-auto px-4 flex items-center justify-between text-xs font-medium tracking-wide">
           <div className="flex items-center gap-6">
-            <a href="tel:+51999999999" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Phone className="h-4 w-4" />
-              <span>+51 999 999 999</span>
+            <a href={phoneHref} className="flex items-center gap-2 hover:text-primary transition-colors">
+              <Phone className="h-3.5 w-3.5 text-primary" />
+              <span>{phoneNumber}</span>
             </a>
             <a href="mailto:ciro.clemente@remaxaces.pe" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Mail className="h-4 w-4" />
+              <Mail className="h-3.5 w-3.5 text-primary" />
               <span>ciro.clemente@remaxaces.pe</span>
             </a>
           </div>
           <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4" />
+            <MapPin className="h-3.5 w-3.5 text-primary" />
             <span>San Isidro, Lima</span>
           </div>
         </div>
       </div>
 
       {/* Main Header */}
-      <header 
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          isScrolled 
-            ? "bg-card/98 backdrop-blur-md shadow-elevated py-3" 
-            : "bg-card py-4"
-        }`}
+      <header
+        className={`sticky top-0 z-50 transition-all duration-500 ${isScrolled
+            ? "bg-white/95 backdrop-blur-lg shadow-elevated py-2"
+            : "bg-white py-4"
+          }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-3">
-              <img 
-                src={remaxLogo} 
-                alt="REMAX Logo" 
-                className="h-12 w-auto"
+            <a href="#" className="flex items-center gap-3 transition-transform hover:scale-105 active:scale-95">
+              <img
+                src={remaxLogo}
+                alt="REMAX Logo"
+                className={`transition-all duration-500 ${isScrolled ? "h-10" : "h-14"} w-auto`}
               />
-              <div className="hidden sm:block border-l-2 border-primary pl-3">
-                <p className="text-xs font-bold text-foreground uppercase tracking-wide">Ciro Clemente</p>
-                <p className="text-xs text-muted-foreground">Agente Inmobiliario</p>
-              </div>
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-10">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-semibold text-foreground hover:text-primary transition-colors uppercase tracking-wide"
+                  className="text-xs font-bold text-foreground/80 hover:text-primary transition-colors uppercase tracking-[0.15em] relative group"
                 >
                   {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
                 </a>
               ))}
             </nav>
 
             {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-4">
               <a
-                href="tel:+51999999999"
-                className="flex items-center gap-2 px-4 py-2.5 border-2 border-secondary text-secondary rounded-lg font-semibold text-sm hover:bg-secondary hover:text-secondary-foreground transition-all"
+                href={phoneHref}
+                className="flex items-center gap-2 px-5 py-2.5 border-2 border-secondary text-secondary rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-secondary hover:text-white transition-all shadow-sm"
               >
                 <Phone className="h-4 w-4" />
                 Llamar
               </a>
               <a
                 href="#contacto"
-                className="btn-primary px-5 py-2.5 text-sm"
+                className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-primary-hover transition-all shadow-remax hover:shadow-remax-lg transform hover:-translate-y-0.5"
               >
                 Agendar Cita Gratis
               </a>
             </div>
 
             {/* Mobile Actions */}
-            <div className="flex lg:hidden items-center gap-3">
+            <div className="flex lg:hidden items-center gap-4">
               <a
-                href="tel:+51999999999"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-secondary text-secondary-foreground transition-transform hover:scale-105"
+                href={phoneHref}
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-white shadow-lg shadow-secondary/20 active:scale-95 transition-transform"
                 aria-label="Llamar"
               >
                 <Phone className="h-5 w-5" />
               </a>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="flex h-11 w-11 items-center justify-center rounded-lg bg-muted text-foreground"
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted text-foreground active:scale-95 transition-transform"
                 aria-label="Menú"
               >
                 {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -117,29 +116,42 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-card border-t border-border shadow-elevated animate-fade-up">
-            <nav className="container mx-auto px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-base font-semibold text-foreground hover:text-primary transition-colors py-2 border-b border-border/50"
-                >
-                  {link.label}
-                </a>
-              ))}
+        <div
+          className={`lg:hidden fixed inset-0 top-[calc(100%-1px)] bg-white/95 backdrop-blur-xl transition-all duration-500 ease-in-out ${isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
+            }`}
+        >
+          <nav className="container mx-auto px-6 py-10 flex flex-col gap-6 h-screen overflow-y-auto pb-32">
+            {navLinks.map((link, idx) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-xl font-black text-foreground hover:text-primary transition-all uppercase tracking-tighter flex items-center justify-between group border-b border-border pb-4`}
+                style={{ transitionDelay: `${idx * 50}ms` }}
+              >
+                {link.label}
+                <X className="h-5 w-5 opacity-0 group-hover:opacity-100 rotate-45 transition-all" />
+              </a>
+            ))}
+            <div className="mt-4 space-y-4">
+              <a
+                href={phoneHref}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full h-14 flex items-center justify-center gap-3 border-2 border-secondary text-secondary rounded-2xl font-bold uppercase tracking-widest text-sm hover:bg-secondary hover:text-white transition-all"
+              >
+                <Phone className="h-5 w-5" />
+                Llamar Ahora
+              </a>
               <a
                 href="#contacto"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="btn-primary w-full justify-center mt-4"
+                className="w-full h-14 flex items-center justify-center bg-primary text-white rounded-2xl font-bold uppercase tracking-widest text-sm shadow-remax"
               >
                 Agendar Cita Gratuita
               </a>
-            </nav>
-          </div>
-        )}
+            </div>
+          </nav>
+        </div>
       </header>
     </>
   );

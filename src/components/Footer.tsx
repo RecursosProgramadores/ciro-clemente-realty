@@ -1,4 +1,5 @@
 import remaxLogo from "@/assets/remax-logo.png";
+import devLogo from "@/assets/logos/logo.svg";
 import { MapPin, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
@@ -37,8 +38,8 @@ const Footer = () => {
               </div>
               <div className="flex items-center justify-center md:justify-end gap-2 text-primary-foreground/80">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+51999999999" className="text-sm hover:text-primary transition-colors">
-                  +51 999 999 999
+                <a href="tel:+51 971 438 756" className="text-sm hover:text-primary transition-colors">
+                  +51 971 438 756
                 </a>
               </div>
             </div>
@@ -65,13 +66,22 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Bottom Bar */}
-      <div className="border-t border-primary-foreground/20 py-4 px-4">
-        <div className="container mx-auto">
-          <p className="text-center text-xs text-primary-foreground/50">
-            © {currentYear} Ciro Clemente Albitres — REMAX Aces. Todos los derechos reservados.
+      <div className="border-t border-primary-foreground/20 py-6 px-4">
+        <div className="container mx-auto flex flex-col items-center gap-4">
+          <p className="text-center text-xs text-primary-foreground/50 flex flex-wrap justify-center gap-x-2">
+            <span>© {currentYear} Ciro Clemente Albitres — REMAX Aces. Todos los derechos reservados.</span>
+            <span className="hidden sm:inline">|</span>
+            <a href="#" className="hover:text-primary transition-colors">Términos y condiciones</a>
+            <span className="hidden sm:inline">|</span>
+            <a href="#" className="hover:text-primary transition-colors">Política de privacidad</a>
           </p>
+
+          <div className="flex items-center gap-2 text-primary-foreground/40 grayscale hover:grayscale-0 transition-all duration-300">
+            <span className="text-xs uppercase tracking-widest font-medium">Desarrollado por</span>
+            <img src={devLogo} alt="Developer" className="h-8 brightness-0 invert" />
+          </div>
         </div>
       </div>
     </footer>

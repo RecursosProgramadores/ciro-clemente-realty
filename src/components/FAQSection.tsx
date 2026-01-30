@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import faqImg from "@/assets/ciroportada.jpg";
 
 const faqs = [
   {
@@ -41,38 +42,64 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="section-padding bg-background">
-      <div className="container mx-auto">
-        <div className="max-w-2xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-muted text-foreground px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            <HelpCircle className="h-4 w-4" />
-            Preguntas frecuentes
-          </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-foreground mb-4">
-            RESUELVO TUS DUDAS
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Transparencia total. Esto es lo que otros propietarios me han preguntado.
-          </p>
-        </div>
+    <section id="faq" className="section-padding bg-background overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-card rounded-xl px-5 lg:px-6 shadow-soft border-none data-[state=open]:shadow-elevated transition-shadow"
-              >
-                <AccordionTrigger className="text-left font-bold text-foreground hover:text-primary hover:no-underline py-5 text-base lg:text-lg">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5 text-base leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          {/* Content Left */}
+          <div className="flex-1 w-full animate-fade-in-left">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <HelpCircle className="h-4 w-4" />
+              Resolviendo tus dudas
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground mb-6 uppercase tracking-tight">
+              PREGUNTAS <span className="text-primary italic">FRECUENTES</span>
+            </h2>
+            <p className="text-lg text-muted-foreground mb-10 max-w-xl">
+              Transparencia total en cada paso. Aquí respondo lo que la mayoría de propietarios necesita saber antes de empezar.
+            </p>
+
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-card rounded-2xl px-6 border border-border shadow-soft data-[state=open]:border-primary/30 data-[state=open]:shadow-elevated transition-all duration-300 overflow-hidden"
+                >
+                  <AccordionTrigger className="text-left font-bold text-foreground hover:text-primary hover:no-underline py-5 text-base lg:text-lg">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-6 text-base leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+
+          {/* Image Right */}
+          <div className="flex-1 w-full lg:max-w-[45%] animate-fade-in-right">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-primary/5 rounded-[2.5rem] -rotate-2 -z-10" />
+              <div className="absolute -inset-4 bg-secondary/5 rounded-[2.5rem] rotate-2 -z-10" />
+              <div className="relative rounded-[2rem] overflow-hidden shadow-elevated aspect-[4/5]">
+                <img
+                  src={faqImg}
+                  alt="Asesoría Inmobiliaria Profesional"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent pointer-events-none" />
+
+                {/* Floating Badge */}
+                <div className="absolute bottom-6 left-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl">
+                  <p className="text-white text-sm font-medium">
+                    "Vender bien no es cuestión de suerte, es cuestión de estrategia."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

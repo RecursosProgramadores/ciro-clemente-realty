@@ -1,9 +1,11 @@
 import { Check, Camera, Plus } from "lucide-react";
+import property1 from "@/assets/property-1.jpg";
+
 
 const ResultsSection = () => {
   // Placeholder properties - user will replace with real ones
   const properties = [
-    { id: 1, status: "VENDIDO" },
+    { id: 1, status: "VENDIDO", image: property1 },
     { id: 2, status: "ALQUILADO" },
     { id: 3, status: "VENDIDO" },
     { id: 4, status: "ALQUILADO" },
@@ -32,14 +34,22 @@ const ResultsSection = () => {
                 key={property.id}
                 className="relative rounded-2xl overflow-hidden shadow-elevated group aspect-[3/4]"
               >
-                {/* Placeholder for property image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-muted to-muted/50 flex flex-col items-center justify-center p-4 text-center">
-                  <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center mb-3">
-                    <Camera className="h-6 w-6 text-foreground/50" />
+                {/* Property image or placeholder */}
+                {property.image ? (
+                  <img
+                    src={property.image}
+                    alt={`Propiedad ${property.id}`}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-muted to-muted/50 flex flex-col items-center justify-center p-4 text-center">
+                    <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center mb-3">
+                      <Camera className="h-6 w-6 text-foreground/50" />
+                    </div>
+                    <p className="text-sm font-semibold text-foreground/70">Foto propiedad</p>
+                    <p className="text-xs text-muted-foreground">Añade tu imagen</p>
                   </div>
-                  <p className="text-sm font-semibold text-foreground/70">Foto propiedad</p>
-                  <p className="text-xs text-muted-foreground">Añade tu imagen</p>
-                </div>
+                )}
 
                 {/* Status Badge */}
                 <div className="absolute top-3 left-3 z-10">
@@ -60,14 +70,6 @@ const ResultsSection = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Add More Placeholder */}
-          <div className="flex justify-center mb-10">
-            <div className="flex items-center gap-2 px-4 py-2 border-2 border-dashed border-border rounded-xl text-muted-foreground">
-              <Plus className="h-5 w-5" />
-              <span className="text-sm">Añade más propiedades vendidas</span>
-            </div>
           </div>
 
           {/* Stats */}

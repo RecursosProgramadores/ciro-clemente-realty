@@ -1,8 +1,10 @@
-import { MessageCircle, Calendar, Play, CheckCircle } from "lucide-react";
+import { Calendar, Play, CheckCircle } from "lucide-react";
 import { useState } from "react";
+import wsp from "@/assets/logos/wstp.svg";
+import ciroPortada from "@/assets/ciroportada.jpg";
 
 const HeroSection = () => {
-  const whatsappNumber = "51999999999";
+  const whatsappNumber = "51971438756";
   const whatsappMessage = encodeURIComponent(
     "Hola Ciro, quiero vender/alquilar mi propiedad. Me gustaría agendar una evaluación gratuita."
   );
@@ -18,14 +20,14 @@ const HeroSection = () => {
     <section className="relative min-h-[90vh] flex items-center py-12 lg:py-0 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/30 z-0" />
-      
+
       {/* Decorative Elements */}
       <div className="absolute top-20 right-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          
+
           {/* Content */}
           <div className="order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -33,11 +35,11 @@ const HeroSection = () => {
               REMAX Aces • 6 años de experiencia
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6 uppercase">
               VENDE TU PROPIEDAD
               <span className="block text-primary mt-1">AL PRECIO QUE MERECE</span>
             </h1>
-            
+
             <p className="text-lg lg:text-xl text-muted-foreground mb-6 leading-relaxed">
               Soy <strong className="text-foreground">Ciro Clemente</strong>, agente inmobiliario especializado en Lima Top y Lima Moderna. Te ayudo a vender con estrategia, no con prisas.
             </p>
@@ -60,7 +62,7 @@ const HeroSection = () => {
                 rel="noopener noreferrer"
                 className="btn-primary text-base"
               >
-                <MessageCircle className="h-5 w-5" />
+                <img src={wsp} alt="WhatsApp" className="h-5 w-5" />
                 Escríbeme por WhatsApp
               </a>
               <a
@@ -81,28 +83,22 @@ const HeroSection = () => {
           {/* Image/Video Section */}
           <div className="order-1 lg:order-2">
             <div className="relative">
-              {/* Main Image Container - PLACEHOLDER FOR USER IMAGE */}
-              <div className="relative rounded-2xl overflow-hidden shadow-elevated bg-muted aspect-[4/5] lg:aspect-[3/4]">
-                {/* Placeholder for user to add their image */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-gradient-to-br from-remax-bridge-blue to-foreground">
-                  <div className="w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-                    <Play className="h-10 w-10 text-primary-foreground" />
-                  </div>
-                  <p className="text-primary-foreground font-bold text-lg mb-2">TU FOTO AQUÍ</p>
-                  <p className="text-primary-foreground/70 text-sm max-w-xs">
-                    Añade tu foto profesional o video vertical para generar confianza inmediata
-                  </p>
-                </div>
-                
-                {/* Uncomment and use when you have the actual image:
+              {/* Main Image Container */}
+              <div className={`relative rounded-2xl overflow-hidden shadow-elevated bg-muted aspect-[4/5] lg:aspect-[3/4] transition-all duration-700 ${imageLoaded ? 'opacity-100' : 'opacity-0 scale-95'}`}>
                 <img
-                  src={YOUR_IMAGE_HERE}
+                  src={ciroPortada}
                   alt="Ciro Clemente - Agente Inmobiliario REMAX"
                   className="w-full h-full object-cover object-top"
                   onLoad={() => setImageLoaded(true)}
                 />
-                */}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent pointer-events-none" />
               </div>
+
+              {!imageLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-muted rounded-2xl animate-pulse">
+                  <Play className="h-10 w-10 text-primary/20" />
+                </div>
+              )}
 
               {/* Floating Card */}
               <div className="absolute -bottom-6 -left-4 right-4 lg:-left-8 lg:right-auto lg:w-72 bg-card rounded-xl p-4 shadow-elevated border border-border">
